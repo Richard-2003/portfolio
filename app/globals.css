@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
+@theme {
+  /* Tipografía nativa heredada de las variables de Next.js font */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Colores Premium (Zinc Oscuro con el Rosa Flyer controlado) */
+  --color-bg-base: #09090b;       /* Zinc 950 profundo */
+  --color-bg-surface: #141417;    /* Tarjetas y componentes */
+  --color-brand: #ff007f;         /* Tu rosa de alta fidelidad */
+  --color-brand-muted: rgba(255, 0, 127, 0.1);
+  --color-border-subtle: #27272a; /* Zinc 800 para líneas ultra-finas */
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg-base);
+  color: #f4f4f5; /* Zinc 100 */
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+/* Textura de Ingeniería de Fondo (Sutil y elegante) */
+.premium-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(39, 39, 42, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(39, 39, 42, 0.25) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+}
+
+/* Efecto Micro-Brillo para Cards Premium */
+.premium-card-glow {
+  position: relative;
+}
+.premium-card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to bottom, rgba(255, 0, 127, 0.15), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Smooth Scrolling para navegación de alto nivel */
+html {
+  scroll-behavior: smooth;
 }
